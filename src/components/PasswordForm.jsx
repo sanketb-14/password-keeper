@@ -22,9 +22,9 @@ export const PasswordForm = () => {
     }
   }, [editingPassword]);
 
-  // The form's submit handler
+ 
   const handleSubmit = (e) => {
-    e.preventDefault(); // <- This is crucial! It prevents the page from reloading.
+    e.preventDefault();
     if (!formData.title.trim() || !formData.password.trim()) return;
 
     if (editingPassword) {
@@ -58,12 +58,11 @@ export const PasswordForm = () => {
           <button 
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
             onClick={closeModal}
-            type="button" // Important for a button inside a form that isn't meant to submit it
+            type="button" 
           >
             ✕
           </button>
 
-          {/* Wrap the inputs in a form element with an onSubmit handler */}
           <form onSubmit={handleSubmit}>
             <div className="space-y-4">
             
@@ -78,7 +77,7 @@ export const PasswordForm = () => {
                   onChange={handleChange}
                   placeholder="e.g., Gmail, Facebook, Work Email"
                   className="input input-bordered w-full focus:input-primary"
-                  // You can now remove the individual onKeyDown!
+            
                 />
               </div>
 
@@ -95,10 +94,10 @@ export const PasswordForm = () => {
                     onChange={handleChange}
                     placeholder="Enter your password"
                     className="input input-bordered w-full pr-12 focus:input-primary"
-                    // You can now remove the individual onKeyDown!
+                   
                   />
                   <button
-                    type="button" // This must be type="button" to prevent form submission
+                    type="button" 
                     onClick={() => setShowPassword(!showPassword)}
                     className="btn btn-ghost btn-sm absolute right-1 top-1 h-10 w-10 p-0"
                   >
@@ -113,11 +112,11 @@ export const PasswordForm = () => {
               <button 
                 className="btn btn-ghost"
                 onClick={closeModal}
-                type="button" // Important: prevents this button from submitting the form
+                type="button" 
               >
                 Cancel
               </button>
-              {/* This button is now type="submit". It will trigger the form's onSubmit. */}
+            
               <button 
                 className="btn btn-primary"
                 type="submit"

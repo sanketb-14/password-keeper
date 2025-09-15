@@ -6,6 +6,9 @@ export const PasswordItem = ({ password }) => {
   const { deletePassword, openEditModal } = usePasswords();
   const [showPassword, setShowPassword] = useState(false);
 
+  console.log(password);
+  
+
   const handleDelete = () => {
     if (window.confirm('Are you sure you want to delete this password?')) {
       deletePassword(password.id);
@@ -40,9 +43,7 @@ export const PasswordItem = ({ password }) => {
               {password.updatedAt && password.updatedAt !== password.createdAt 
                 ? `Updated on ${password.updatedAt}` 
                 : `Added on ${password.createdAt}`}
-              {password.importedAt && (
-                <span className="ml-2 text-info">📥 Imported</span>
-              )}
+             
             </div>
           </div>
           
