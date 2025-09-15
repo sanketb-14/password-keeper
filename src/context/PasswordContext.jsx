@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const PasswordContext = createContext();
 
@@ -24,22 +24,27 @@ export const PasswordProvider = ({ children }) => {
     }
   }, [passwords]);
 
-  const filteredPasswords = useMemo(() => {
-    if (!searchQuery.trim()) return passwords;
+ 
 
-    const query = searchQuery.toLowerCase().trim();
-    return passwords.filter(
+const filteredPasswords = searchQuery.trim() 
+  ? passwords.filter(
       (password) =>
-        password.title.toLowerCase().includes(query) ||
-        password.password.toLowerCase().includes(query)
-    );
-  }, [passwords, searchQuery]);
+        password.title.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
+        password.password.toLowerCase().includes(searchQuery.toLowerCase().trim())
+    )
+  : passwords;
+
+
+  
+
+
 
   const addPassword = (passwordData) => {
     const newPassword = {
       id: Date.now(),
       ...passwordData,
       createdAt: new Date().toLocaleDateString(),
+      
       updatedAt: new Date().toLocaleDateString(),
     };
     setPasswords((prev) => {
@@ -106,6 +111,7 @@ export const PasswordProvider = ({ children }) => {
         deletePassword,
         clearAllPasswords,
         setSearchQuery,
+        searchQuery,
         openAddModal,
         openEditModal,
         closeModal,

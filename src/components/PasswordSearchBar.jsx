@@ -1,11 +1,12 @@
 import { usePasswords } from "../context/PasswordContext";
-import { Search } from 'lucide-react';
+import { Search, X } from "lucide-react";
 
 export const PasswordSearchBar = () => {
-  const { searchQuery, setSearchQuery, passwords, filteredPasswords } = usePasswords();
+  const { searchQuery, setSearchQuery, passwords, filteredPasswords } =
+    usePasswords();
 
   const clearSearch = () => {
-    setSearchQuery('');
+    setSearchQuery("");
   };
 
   return (
@@ -32,16 +33,19 @@ export const PasswordSearchBar = () => {
           )}
         </div>
       </div>
-      
+
       {/* Search Results Info */}
-      {passwords.length > 0 && (
+      {(passwords.length > 0 || searchQuery) && (
         <div className="flex items-center justify-between mt-2 text-sm text-base-content/60">
           <span>
             {searchQuery ? (
               filteredPasswords.length === 0 ? (
                 <>🔍 No passwords found for "{searchQuery}"</>
               ) : (
-                <>🔍 Found {filteredPasswords.length} of {passwords.length} passwords</>
+                <>
+                  🔍 Found {filteredPasswords.length} of {passwords.length}{" "}
+                  passwords
+                </>
               )
             ) : (
               <>📁 Showing all {passwords.length} passwords</>
